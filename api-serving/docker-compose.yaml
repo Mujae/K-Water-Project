@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  api-serving:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: api-serving
+    ports:
+      - 8000:8000
+    environment:
+      DB_HOST: postgres-server  
+      DB_USER: myuser
+      DB_PASSWORD: mypassword
+      DB_NAME: mydatabase
+    networks:
+      - mlops-network
+    healthcheck:
+      test:
+        - CMD
+        - curl -X POST http://localhost:8000/predict_ppm
+        - -H
+        - "Content-Type: application/json"
+        - -d
+        - '{"turbidity":30, "alkalinity":97, "conductivity" :200, "pH":7, "temp":7, "year":22, "month":7, "turbidity_avg24":24}'
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  mlops-network:
+    external: true
