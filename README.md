@@ -27,4 +27,5 @@ Please note that the datasets and trained models used for this project are confi
 
 
 ## Reference
-https://mlops-for-mle.github.io/tutorial/docs/intro
+MLOps: https://mlops-for-mle.github.io/tutorial/docs/intro
+My Notion: https://www.notion.so/99badff6af6f4f4a9bb1c57bf210e2f3
